@@ -8,6 +8,7 @@
 //   palindrome("abcdefg") === false
 
 
+
 //Solution 1
 
 // function palindrome(str) {
