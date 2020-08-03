@@ -8,6 +8,50 @@
 //   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
 //   anagrams('Hi there', 'Bye there') --> False
 
-function anagrams(stringA, stringB) {}
+// The Great Solution
+
+function anagrams(stringA, stringB){
+    stringA = stringA.replace(/[^\w]/g, "").toLowerCase();
+    stringB = stringB.replace(/[^\w]/g, "").toLowerCase();
+
+    return stringA.split("").sort().join("") == stringB.split("").sort().join("");
+}
+
+
+
+// My Brute Force Solution
+
+// function anagrams(stringA, stringB) {
+//     let obj = buildCharMap(stringA)
+//     let secondObj = buildCharMap(stringB)
+
+//     if(Object.keys(obj).length !== Object.keys(secondObj).length){
+//         return false;
+//     }
+
+//     for (let key in obj){
+//         if(secondObj[key] !== obj[key]){
+//             return false
+//         }
+//     }
+
+//     return true;
+// }
+
+// function buildCharMap(string){
+//     let filterString = string.replace(/[^\w]/g, "").toLowerCase();
+
+//     let obj = {}
+
+//     for (let str of filterString){
+//         if(str in obj){
+//             obj[str] += 1;
+//         }else {
+//             obj[str] = 1;
+//         }
+//     }
+
+//     return obj;
+// }
 
 module.exports = anagrams;
