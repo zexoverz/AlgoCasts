@@ -7,6 +7,32 @@
 //   vowels('Why do you ask?') --> 4
 //   vowels('Why?') --> 0
 
-function vowels(str) {}
+
+// My Brute Force Solution O(n)
+
+// function vowels(str) {
+//     let temp = ['a', 'e', 'i', 'o', 'u'];
+
+//     let total = 0;
+
+
+//     for (let alphabet of str){
+//         alphabet = alphabet.toLowerCase();
+//         if(temp.includes(alphabet)){
+//             total++
+//         }
+//     }
+
+//     return total;
+    
+// }
+
+// Regex Solution
+
+function vowels(str) {
+    const matches = str.match(/[aiueo]/gi);
+
+    return matches ? matches.length : 0;
+}
 
 module.exports = vowels;

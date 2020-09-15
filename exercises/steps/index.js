@@ -34,7 +34,7 @@ function steps(n, row = 0, stair = '') {
     steps(n, row, stair + add)
 }
 
-// My Brute Force Solution
+// My Brute Force Solution O(n^2)
 
 // function steps(n) {
     

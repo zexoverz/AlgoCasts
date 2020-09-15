@@ -8,6 +8,27 @@
 // Example:
 //   fib(4) === 3
 
-function fib(n) {}
+// function fib(n) {
+//     let series = [0, 1];  // 0 1 
+//     let pointer = 0;
+
+//     for (let i = 2; i <= n; i++){
+//         series.push(series[pointer] + series [i-1]);
+//         pointer++
+//     }
+
+//     return series[n];
+// }
+
+// my recursive solution;
+
+function fib(n){
+    if(n < 2){
+        return n
+    }
+
+    return fib(n - 1) + fib(n - 2);
+}
+
 
 module.exports = fib;

@@ -14,7 +14,7 @@
 
 // }
 
-//Solution 2
+//Solution 2 Linear runtime O(n)
 
 function reverse(str) {
 
