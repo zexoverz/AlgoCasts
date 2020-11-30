@@ -41,13 +41,7 @@ class LinkedList {
             return null
         }
         
-        let node = this.head;
-
-        while(node.next){
-            node = node.next;
-        }
-
-        return node;
+        return this.getAt(this.size() - 1);
     }
 
     clear(){
@@ -67,20 +61,18 @@ class LinkedList {
             return;
         }
 
-        let node = this.head;
-
+        
         if(this.head.next === null){
             this.head = null;
             return;
         }
+        
+        let node = this.getAt(this.size() - 2);
+        let lastNode = node.next;
+        node.next = null;
 
-        while(true){
-            if(node.next.next == null){
-                node.next = null;
-                return node;
-            }
-            node = node.next;
-        }
+        return lastNode;
+        
     }
 
     insertLast(data){
@@ -115,23 +107,62 @@ class LinkedList {
         if(!this.head || index > this.size()){
             return;
         }
-
-        let node = this.head;
-        let pointer = this.head.next; 
-        let counter = 1;
-
+        
         if(index === 0){
             this.head = this.head.next;
+            return;
         }
 
-        while(pointer){
-            if(index == counter){
-                node.next = pointer.next;
-                return;
-            }
+        let previous = this.getAt(index - 1);
+
+        if(!previous || !previous.next){
+            return;
+        }
+        
+        previous.next = previous.next.next;
+
+        
+    }
+
+
+    insertAt(data, index){
+        if(!this.head){
+            this.head = new Node(data, null);
+            return;
+        }
+
+        if(index >= this.size() ){
+            this.insertLast(data);
+            return;
+        }
+
+        if(index == 0){
+            this.head = new Node(data, this.head);
+            return;
+        }
+
+        let previous = this.getAt(index - 1) || this.getLast(data);
+        let node = new Node(data, previous.next);
+        previous.next = node;
+    }
+    
+    forEach(fn){
+        let node = this.head;
+        let counter = 0;
+
+        while(node){
+            fn(node, counter);  // recursive function for callback loop
+            node = node.next;
             counter++;
-            node = pointer;
-            pointer = pointer.next;
+        }
+    }
+
+    *[Symbol.iterator](){
+        let node = this.head;
+
+        while(node){
+            yield node;   // callback node for loop
+            node = node.next;
         }
     }
 }
