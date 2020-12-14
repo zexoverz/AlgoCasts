@@ -11,6 +11,58 @@
 // class.  Contains should accept a 'data' argument
 // and return the Node in the tree with the same value.
 
-class Node {}
+class Node {
+    constructor(data){
+        this.data = data;
+        this.left = null;
+        this.right = null;
+    }
+
+
+    insert(data){
+        if(data < this.data && this.left){
+            this.left.insert(data);
+        } else if (data < this.data){
+            this.left = new Node(data);
+        } else if (data > this.data && this.right){
+            this.right.insert(data);
+        } else if (data > this.data){
+            this.right = new Node(data);
+        }
+    }
+
+    // my brute force contains solution
+
+    // contains(data, node = this){
+    //     if(node == null){
+    //         return null
+    //     } else if (data == node.data) {
+    //         return node;
+    //     } else if (data < node.data){
+    //         node = node.left;
+    //         return this.contains(data, node)
+    //     } else if (data > node.data){
+    //         node = node.right;
+    //         return this.contains(data, node)
+    //     }
+    // }
+
+    // optimized contains solution
+
+    contains(data){
+        if(data == this.data){
+            return this
+        }
+
+        if(data < this.data && this.left){
+            return this.left.contains(data);
+        } else if (data > this.data && this.right){
+            return this.right.contains(data);
+        }
+
+        return null;
+    }
+
+}
 
 module.exports = Node;
